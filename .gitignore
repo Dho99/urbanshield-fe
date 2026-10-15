@@ -1,0 +1,14 @@
+.env
+.venv/
+venv/
+__pycache__/
+*.pyc
+*.pyo
+.next/
+out/
+build/
+dist/
+node_modules/
+data/*.sqlite
+*.log
+.DS_Store

@@ -1,0 +1,372 @@
+{
+  "andir": [
+    {
+      "id": 77,
+      "jenisKejadian": "BANJIR",
+      "kelurahan": "Maleber",
+      "lokasi": "GG. RAHAYU 3, 4, 5, 6 RT.02/RW 04",
+      "tahun": "2025"
+    }
+  ],
+  "antapani": [],
+  "arcamanik": [
+    {
+      "id": 47,
+      "jenisKejadian": "BANJIR",
+      "kelurahan": "Sukamiskin",
+      "lokasi": "SIMPANGSARI RT 02,03,04,05 RW 01",
+      "tahun": "2025"
+    },
+    {
+      "id": 76,
+      "jenisKejadian": "BANJIR",
+      "kelurahan": "Cisaranten Kulon",
+      "lokasi": "JL. CINGISED RT 01 RT 02 RT 03 RW 06",
+      "tahun": "2025"
+    }
+  ],
+  "astana-anyar": [
+    {
+      "id": 5,
+      "jenisKejadian": "BANJIR",
+      "kelurahan": "Cibadak",
+      "lokasi": "GG. TRESNA ASIH RT.02 RW.07",
+      "tahun": "2025"
+    },
+    {
+      "id": 34,
+      "jenisKejadian": "BANJIR",
+      "kelurahan": "Cibadak",
+      "lokasi": "JL. PAGARSIH DAN JL. ASTANAANYAR RT 01, 02 RW 07",
+      "tahun": "2025"
+    },
+    {
+      "id": 118,
+      "jenisKejadian": "BANJIR",
+      "kelurahan": "Cibadak",
+      "lokasi": "GG TRESNA ASIH RT 02 RW 07",
+      "tahun": "2025"
+    }
+  ],
+  "babakan-ciparay": [],
+  "bandung-kidul": [
+    {
+      "id": 11,
+      "jenisKejadian": "BANJIR",
+      "kelurahan": "Batununggal",
+      "lokasi": "JL. ARHANUDRI DALAM III RT 05 RW 10",
+      "tahun": "2025"
+    },
+    {
+      "id": 12,
+      "jenisKejadian": "BANJIR",
+      "kelurahan": "Batununggal",
+      "lokasi": "JL WAAS RT 03,01,07,04 RW 01",
+      "tahun": "2025"
+    },
+    {
+      "id": 24,
+      "jenisKejadian": "BANJIR",
+      "kelurahan": "Kujangsari",
+      "lokasi": "RT 05,09 RW 07",
+      "tahun": "2025"
+    }
+  ],
+  "bandung-kulon": [
+    {
+      "id": 35,
+      "jenisKejadian": "BANJIR",
+      "kelurahan": "Gempol Sari",
+      "lokasi": "JL. REUNGAS RT 01,02,03,04 RW 06",
+      "tahun": "2025"
+    }
+  ],
+  "bandung-wetan": [
+    {
+      "id": 37,
+      "jenisKejadian": "BANJIR",
+      "kelurahan": "Tamansari",
+      "lokasi": "GG NANGKA SUNI RW 18",
+      "tahun": "2025"
+    },
+    {
+      "id": 115,
+      "jenisKejadian": "BANJIR",
+      "kelurahan": "Tamansari",
+      "lokasi": "JL. NANGKA SUNI RW 18\nRT.04.05.06 RW 018",
+      "tahun": "2025"
+    }
+  ],
+  "batununggal": [
+    {
+      "id": 94,
+      "jenisKejadian": "BANJIR",
+      "kelurahan": "Kebonwaru",
+      "lokasi": "JL.LEBAK 2  RT.04.05.06 RW 05",
+      "tahun": "2025"
+    }
+  ],
+  "ujung-berung": [
+    {
+      "id": 1,
+      "jenisKejadian": "BANJIR",
+      "kelurahan": "Pasirwangi",
+      "lokasi": "JL. GRIYA WINYA NO.2 RT 07 RW 12",
+      "tahun": "2025"
+    },
+    {
+      "id": 43,
+      "jenisKejadian": "BANJIR",
+      "kelurahan": "Pasirjati",
+      "lokasi": "JL. SUKAGALIH",
+      "tahun": "2025"
+    }
+  ],
+  "sumur-bandung": [
+    {
+      "id": 33,
+      "jenisKejadian": "BANJIR",
+      "kelurahan": "Braga",
+      "lokasi": "JL BRAGA GG APANDI RW 03, 04, 07, 08",
+      "tahun": "2025"
+    },
+    {
+      "id": 41,
+      "jenisKejadian": "KIRMIR AMBRUK, BANJIR, RUMAH AMBRUK",
+      "kelurahan": "Babakan Ciamis",
+      "lokasi": "JALAN BABAKAN CIAMIS RT 01,02,03 RW 03",
+      "tahun": "2025"
+    },
+    {
+      "id": 55,
+      "jenisKejadian": "BANJIR",
+      "kelurahan": "Braga",
+      "lokasi": "JL BRAGA GG APANDI RT 02,03,04,06 RW 08",
+      "tahun": "2025"
+    }
+  ],
+  "bojongloa-kaler": [
+    {
+      "id": 57,
+      "jenisKejadian": "BANJIR",
+      "kelurahan": "Kopo",
+      "lokasi": "SOEKARNO HATTA GG. PUSRI NO.15 RT.10/RW.04",
+      "tahun": "2025"
+    },
+    {
+      "id": 128,
+      "jenisKejadian": "BANJIR",
+      "kelurahan": "Kopo",
+      "lokasi": "JALAN CITARIP RT. 06 RW. 08",
+      "tahun": "2025"
+    }
+  ],
+  "bojongloa-kidul": [],
+  "buah-batu": [
+    {
+      "id": 97,
+      "jenisKejadian": "BANJIR",
+      "kelurahan": "Margasari",
+      "lokasi": "JL RANCASAWO RT 01-09 RW 20, RT 01-06 RW 19, RT 01-05 RW 18",
+      "tahun": "2025"
+    }
+  ],
+  "cibeunying-kaler": [],
+  "cibeunying-kidul": [],
+  "cibiru": [],
+  "cicendo": [
+    {
+      "id": 38,
+      "jenisKejadian": "BANJIR",
+      "kelurahan": "Sukaraja",
+      "lokasi": "PERUMAHAN GRAHA INDAH RT 01 RW 03",
+      "tahun": "2025"
+    },
+    {
+      "id": 39,
+      "jenisKejadian": "BANJIR",
+      "kelurahan": "Pajajaran",
+      "lokasi": "JL. BALADEWA GG. BALADEWA 1 RT 03 DAN RT 05 RW 09",
+      "tahun": "2025"
+    }
+  ],
+  "cidadap": [
+    {
+      "id": 58,
+      "jenisKejadian": "BANJIR",
+      "kelurahan": "Hegarmanah",
+      "lokasi": "JL GG SETIAMANAH",
+      "tahun": "2025"
+    },
+    {
+      "id": 75,
+      "jenisKejadian": "BANJIR DAN KIRMIR ROBOH",
+      "kelurahan": "Hegarmanah",
+      "lokasi": "JL GG SETIAMANAH RT 10, RW 03, RT 05 RW 02, RW 10",
+      "tahun": "2025"
+    }
+  ],
+  "cinambo": [
+    {
+      "id": 44,
+      "jenisKejadian": "BANJIR",
+      "kelurahan": "Sukamulya",
+      "lokasi": "JL. CIRENGOT RW 03, 04, 05, 06",
+      "tahun": "2025"
+    }
+  ],
+  "coblong": [],
+  "gedebage": [
+    {
+      "id": 17,
+      "jenisKejadian": "BANJIR",
+      "kelurahan": "Rancabolang",
+      "lokasi": "CLUSTER TULIP RT 01,02,03,04,05 RW 10,CLUSTER PALEM RW 09 KOMPLEK BUMI ADIPURA",
+      "tahun": "2025"
+    },
+    {
+      "id": 20,
+      "jenisKejadian": "BANJIR",
+      "kelurahan": "Rancabolang",
+      "lokasi": "JL SIMPANG 3 DERWATI RW 03",
+      "tahun": "2025"
+    },
+    {
+      "id": 22,
+      "jenisKejadian": "BANJIR",
+      "kelurahan": "Rancanumpang",
+      "lokasi": "JL RANCANUMPANG RW 01,RW 02,RW 03",
+      "tahun": "2025"
+    },
+    {
+      "id": 36,
+      "jenisKejadian": "BANJIR",
+      "kelurahan": "Rancanumpang",
+      "lokasi": "JL RANCANUMPANG RT 01,05 RW 01,RW 03,RT 01,02 RW 02 RW.04 RT.02,03 RW 05",
+      "tahun": "2025"
+    },
+    {
+      "id": 67,
+      "jenisKejadian": "BANJIR",
+      "kelurahan": "Rancanumpang",
+      "lokasi": "JL RANCANUMPANG KP.BABAKAN AGUS NEGLAMULYANI RT 02,03 RW 02 DAN RANCANUMPANG RT02,03,04,05 RW 01",
+      "tahun": "2025"
+    },
+    {
+      "id": 129,
+      "jenisKejadian": "BANJIR",
+      "kelurahan": "Cimincrang",
+      "lokasi": "RT. 03 RW. 05",
+      "tahun": "2025"
+    },
+    {
+      "id": 130,
+      "jenisKejadian": "BANJIR",
+      "kelurahan": "Rancanumpang",
+      "lokasi": "JL. RANCANUMPANG RT.01.02.03.04.05 RW.01.03",
+      "tahun": "2025"
+    }
+  ],
+  "kiaracondong": [],
+  "lengkong": [],
+  "mandalajati": [],
+  "panyileukan": [
+    {
+      "id": 45,
+      "jenisKejadian": "BANJIR",
+      "kelurahan": "Mekarmulya",
+      "lokasi": "KOMPLEK PANGHEGAR PERMAI JL.MEKAR AGUNG, MEKAR INDAH,MEKAR ASRI RT 01,02 RW 02, RT 01 RW 01",
+      "tahun": "2025"
+    },
+    {
+      "id": 46,
+      "jenisKejadian": "BANJIR",
+      "kelurahan": "Mekarmulya",
+      "lokasi": "JLN SOEKARNOHATTA KM 12,5",
+      "tahun": "2025"
+    }
+  ],
+  "rancasari": [
+    {
+      "id": 15,
+      "jenisKejadian": "BANJIR",
+      "kelurahan": "Derwati",
+      "lokasi": "PERUMAHAN DE MARRAKESH RT 05 RW 07",
+      "tahun": "2025"
+    },
+    {
+      "id": 16,
+      "jenisKejadian": "BANJIR",
+      "kelurahan": "Mekarjaya",
+      "lokasi": "MUSTIKA PERMAI RT 07 RW 06",
+      "tahun": "2025"
+    },
+    {
+      "id": 21,
+      "jenisKejadian": "BANJIR",
+      "kelurahan": "Derwati",
+      "lokasi": "JL BANDUNG INTEN",
+      "tahun": "2025"
+    },
+    {
+      "id": 23,
+      "jenisKejadian": "BANJIR",
+      "kelurahan": "Mekarjaya",
+      "lokasi": "PERUMAHAN BANYU BIRU RW 10",
+      "tahun": "2025"
+    },
+    {
+      "id": 25,
+      "jenisKejadian": "BANJIR",
+      "kelurahan": "Mekarjaya",
+      "lokasi": "MUSTIKA PERMAI RT 07 RW 06",
+      "tahun": "2025"
+    },
+    {
+      "id": 26,
+      "jenisKejadian": "BANJIR",
+      "kelurahan": "Mekarjaya",
+      "lokasi": "GRIYA SALUYU",
+      "tahun": "2025"
+    },
+    {
+      "id": 27,
+      "jenisKejadian": "BANJIR",
+      "kelurahan": "Mekarjaya",
+      "lokasi": "EMPANG POJOK PESONA CIWASTRA VILAGE,MUSTIKA PERMAI RW 06",
+      "tahun": "2025"
+    },
+    {
+      "id": 150,
+      "jenisKejadian": "BANJIR",
+      "kelurahan": "Derwati",
+      "lokasi": "BELAKANG KANTOR KELURAHAN DERWATI RT 06 RW 04",
+      "tahun": "2025"
+    }
+  ],
+  "regol": [],
+  "sukajadi": [
+    {
+      "id": 3,
+      "jenisKejadian": "BANJIR",
+      "kelurahan": "Sukawarna",
+      "lokasi": "JL PASANTREN BABAKAN RANCA HERANG RT 04 RW 02",
+      "tahun": "2025"
+    },
+    {
+      "id": 4,
+      "jenisKejadian": "BANJIR",
+      "kelurahan": "Pasteur",
+      "lokasi": "JL JURANG GG MAMA PURA RT 04 RW 04",
+      "tahun": "2025"
+    },
+    {
+      "id": 81,
+      "jenisKejadian": "BANJIR",
+      "kelurahan": "Sukabungah",
+      "lokasi": "GG. SUKABEKTI I RT 10 RW 06, RT 08 RW 03, RT 09 RW 04",
+      "tahun": "2025"
+    }
+  ],
+  "sukasari": []
+}
