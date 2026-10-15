@@ -1,6 +1,7 @@
-import axios, { AxiosError } from "axios";
+import axios from "axios";
+import { toApiError } from "./api-error";
 
-const raw = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000/api/v1";
+const raw = (process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000/api/v1").trim();
 const baseURL = raw.replace(/\/$/, "");
 
 export const apiClient = axios.create({
@@ -20,15 +21,14 @@ apiClient.interceptors.request.use((config) => {
 
 apiClient.interceptors.response.use(
   (r) => r,
-  (error: AxiosError<{ detail?: string; message?: string }>) => {
-    const status = error.response?.status;
-    if (status === 401 && typeof window !== "undefined") {
+  (error) => {
+    const apiError = toApiError(error);
+    if (apiError.status === 401 && typeof window !== "undefined") {
       const path = window.location.pathname;
       if (!path.startsWith("/login") && !path.startsWith("/register") && !path.startsWith("/api/auth")) {
         window.localStorage.removeItem("urbanshield_token");
       }
     }
-    const message = error.response?.data?.detail ?? error.response?.data?.message ?? error.message ?? "Request failed";
-    return Promise.reject(new Error(message));
+    return Promise.reject(apiError);
   },
 );

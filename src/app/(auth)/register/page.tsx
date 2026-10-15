@@ -12,6 +12,7 @@ import { Input, Label } from "@/components/ui/input";
 import { Select } from "@/components/ui/select";
 import { registerSchema, type RegisterInput } from "@/schemas";
 import { useAuth } from "@/lib/auth-context";
+import type { ApiError } from "@/lib/api/api-error";
 
 const ROLES = [
   ["city_planner", "Perencana Kota (City Planner)"],
@@ -27,15 +28,28 @@ export default function RegisterPage() {
   const {
     register,
     handleSubmit,
+    setError,
     formState: { errors, isSubmitting },
   } = useForm<RegisterInput>({ resolver: zodResolver(registerSchema) });
 
   async function onSubmit(values: RegisterInput) {
     setServerError(null);
     try {
-      await registerAccount({ name: values.name, email: values.email, password: values.password, role: values.role });
+      await registerAccount({ name: values.name.trim(), email: values.email.trim(), password: values.password, role: values.role });
     } catch (err) {
-      setServerError(err instanceof Error ? err.message : "Pendaftaran gagal. Silakan coba kembali.");
+      const apiErr = err as ApiError;
+      const formFields = ["name", "email", "password", "role"] as const;
+      let attached = false;
+      for (const field of formFields) {
+        const message = apiErr.fields?.[field];
+        if (message) {
+          setError(field, { message });
+          attached = true;
+        }
+      }
+      if (!attached) {
+        setServerError(err instanceof Error ? err.message : "Pendaftaran gagal. Silakan coba kembali.");
+      }
       return;
     }
     router.push("/dashboard");

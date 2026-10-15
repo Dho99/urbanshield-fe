@@ -11,6 +11,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input, Label } from "@/components/ui/input";
 import { loginSchema, type LoginInput } from "@/schemas";
 import { useAuth } from "@/lib/auth-context";
+import type { ApiError } from "@/lib/api/api-error";
 
 export default function LoginPage() {
   const router = useRouter();
@@ -19,15 +20,28 @@ export default function LoginPage() {
   const {
     register,
     handleSubmit,
+    setError,
     formState: { errors, isSubmitting },
   } = useForm<LoginInput>({ resolver: zodResolver(loginSchema) });
 
   async function onSubmit(values: LoginInput) {
     setServerError(null);
     try {
-      await login(values.email, values.password);
+      await login(values.email.trim(), values.password);
     } catch (err) {
-      setServerError(err instanceof Error ? err.message : "Gagal masuk. Periksa kembali email dan kata sandi Anda.");
+      const apiErr = err as ApiError;
+      let attached = false;
+      if (apiErr.fields?.email) {
+        setError("email", { message: apiErr.fields.email });
+        attached = true;
+      }
+      if (apiErr.fields?.password) {
+        setError("password", { message: apiErr.fields.password });
+        attached = true;
+      }
+      if (!attached) {
+        setServerError(err instanceof Error ? err.message : "Gagal masuk. Periksa kembali email dan kata sandi Anda.");
+      }
       return;
     }
     router.push("/dashboard");
