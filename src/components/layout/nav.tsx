@@ -4,7 +4,7 @@ import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { BarChart3, Map as MapIcon, FlaskConical, ClipboardList, Database, User, LogOut, Waves, ShieldAlert, CheckCircle2 } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { signOut, useSession } from "@/lib/auth-client";
+import { useAuth } from "@/lib/auth-context";
 
 const NAV = [
   { href: "/dashboard", label: "Ringkasan", desc: "Pemantauan harian", icon: BarChart3 },
@@ -17,10 +17,10 @@ const NAV = [
 export function Sidebar() {
   const pathname = usePathname();
   const router = useRouter();
-  const { data } = useSession();
+  const { user, logout } = useAuth();
 
   async function handleSignOut() {
-    await signOut();
+    logout();
     router.push("/");
     router.refresh();
   }
@@ -86,8 +86,8 @@ export function Sidebar() {
       </nav>
 
       <div className="shrink-0 border-t border-slate-800 px-4 py-3">
-        <p className="truncate font-mono text-xs text-slate-300">{data?.user?.email ?? "Telah Masuk"}</p>
-        <p className="truncate text-[11px] capitalize text-slate-500">{(data?.user as { role?: string })?.role?.replace(/_/g, " ") ?? "Terotentikasi"}</p>
+        <p className="truncate font-mono text-xs text-slate-300">{user?.email ?? "Telah Masuk"}</p>
+        <p className="truncate text-[11px] capitalize text-slate-500">{user?.role?.replace(/_/g, " ") ?? "Terotentikasi"}</p>
         <button onClick={handleSignOut} className="mt-2.5 flex items-center gap-1.5 text-xs font-medium text-slate-400 hover:text-white">
           <LogOut className="size-3.5" aria-hidden /> Keluar
         </button>

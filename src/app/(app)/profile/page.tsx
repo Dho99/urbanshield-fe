@@ -4,10 +4,13 @@ import Link from "next/link";
 import { Topbar } from "@/components/layout/nav";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/states";
-import { useSession } from "@/lib/auth-client";
+import { useAuth } from "@/lib/auth-context";
 import { ShieldCheck, User, Mail, Briefcase, Clock3 } from "lucide-react";
 
 const ROLE_LABEL: Record<string, string> = {
+  admin: "Administrator",
+  analyst: "Analis (City Planner / BPBD / Peneliti)",
+  viewer: "Viewer (Analis Kebijakan)",
   city_planner: "Perencana Kota (City Planner)",
   disaster_response: "Manajemen Kebencanaan (BPBD)",
   researcher: "Peneliti & Akademisi",
@@ -15,6 +18,9 @@ const ROLE_LABEL: Record<string, string> = {
 };
 
 const ROLE_DESC: Record<string, string> = {
+  admin: "Akses penuh operasional & administrasi sistem.",
+  analyst: "Pemantauan & analisis risiko · pola kerentanan spasial dan prioritas mitigasi.",
+  viewer: "Akses baca prioritas alokasi anggaran mitigasi.",
   city_planner: "Perencanaan tata ruang jangka panjang & perbaikan infrastruktur · membutuhkan bukti pola kerentanan berbasis data spasial.",
   disaster_response: "Pemantauan & koordinasi mitigasi kebencanaan · membutuhkan informasi prioritas wilayah berisiko tinggi serta rencana aksi mitigasi yang jelas.",
   researcher: "Validasi hasil luaran model & pola temporal · membutuhkan transparansi bobot kontribusi fitur dan rekam jejak data.",
@@ -22,8 +28,8 @@ const ROLE_DESC: Record<string, string> = {
 };
 
 export default function ProfilePage() {
-  const { data, isPending } = useSession();
-  const role = (data?.user as { role?: string } | undefined)?.role;
+  const { user, isLoading } = useAuth();
+  const role = user?.role;
 
   return (
     <div className="flex min-h-full flex-col">
@@ -37,13 +43,13 @@ export default function ProfilePage() {
               </CardTitle>
             </CardHeader>
             <CardContent>
-              {isPending ? (
+              {isLoading ? (
                 <div className="space-y-2" aria-label="Memuat profil">
                   <Skeleton className="h-5 w-1/2" />
                   <Skeleton className="h-5 w-2/3" />
                   <Skeleton className="h-5 w-1/3" />
                 </div>
-              ) : !data?.user ? (
+              ) : !user ? (
                 <p className="text-sm text-slate-500">Sesi tidak ditemukan. Silakan masuk kembali.</p>
               ) : (
                 <dl className="divide-y divide-slate-200 text-sm">
@@ -51,13 +57,13 @@ export default function ProfilePage() {
                     <dt className="flex items-center gap-2 text-slate-500">
                       <User className="size-3.5" aria-hidden /> Nama Lengkap
                     </dt>
-                    <dd className="font-medium text-slate-900">{data.user.name}</dd>
+                    <dd className="font-medium text-slate-900">{user.full_name ?? "-"}</dd>
                   </div>
                   <div className="flex items-center justify-between gap-4 py-3">
                     <dt className="flex items-center gap-2 text-slate-500">
                       <Mail className="size-3.5" aria-hidden /> Alamat Email
                     </dt>
-                    <dd className="font-mono text-sm font-medium text-slate-900">{data.user.email}</dd>
+                    <dd className="font-mono text-sm font-medium text-slate-900">{user.email}</dd>
                   </div>
                   <div className="flex items-center justify-between gap-4 py-3">
                     <dt className="flex items-center gap-2 text-slate-500">
@@ -67,9 +73,9 @@ export default function ProfilePage() {
                   </div>
                   <div className="flex items-center justify-between gap-4 py-3">
                     <dt className="flex items-center gap-2 text-slate-500">
-                      <ShieldCheck className="size-3.5" aria-hidden /> Verifikasi Email
+                      <ShieldCheck className="size-3.5" aria-hidden /> Status Akun
                     </dt>
-                    <dd className="font-medium text-slate-900">{data.user.emailVerified ? "Terverifikasi" : "Belum Terverifikasi"}</dd>
+                    <dd className="font-medium text-slate-900">{user.is_active ? "Aktif" : "Nonaktif"}</dd>
                   </div>
                 </dl>
               )}

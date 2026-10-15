@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Waves } from "lucide-react";
@@ -10,10 +10,11 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input, Label } from "@/components/ui/input";
 import { loginSchema, type LoginInput } from "@/schemas";
-import { signIn } from "@/lib/auth-client";
+import { useAuth } from "@/lib/auth-context";
 
 export default function LoginPage() {
   const router = useRouter();
+  const { login, isAuthenticated, isLoading } = useAuth();
   const [serverError, setServerError] = useState<string | null>(null);
   const {
     register,
@@ -23,14 +24,21 @@ export default function LoginPage() {
 
   async function onSubmit(values: LoginInput) {
     setServerError(null);
-    const { error } = await signIn.email({ email: values.email, password: values.password });
-    if (error) {
-      setServerError(error.message ?? "Gagal masuk. Periksa kembali email dan kata sandi Anda.");
+    try {
+      await login(values.email, values.password);
+    } catch (err) {
+      setServerError(err instanceof Error ? err.message : "Gagal masuk. Periksa kembali email dan kata sandi Anda.");
       return;
     }
     router.push("/dashboard");
     router.refresh();
   }
+
+  useEffect(() => {
+    if (!isLoading && isAuthenticated) router.replace("/dashboard");
+  }, [isLoading, isAuthenticated, router]);
+
+  if (!isLoading && isAuthenticated) return null;
 
   return (
     <div className="flex min-h-screen items-center justify-center bg-slate-100 px-4">

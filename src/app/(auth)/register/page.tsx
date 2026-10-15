@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Waves } from "lucide-react";
@@ -11,7 +11,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input, Label } from "@/components/ui/input";
 import { Select } from "@/components/ui/select";
 import { registerSchema, type RegisterInput } from "@/schemas";
-import { signUp } from "@/lib/auth-client";
+import { useAuth } from "@/lib/auth-context";
 
 const ROLES = [
   ["city_planner", "Perencana Kota (City Planner)"],
@@ -22,6 +22,7 @@ const ROLES = [
 
 export default function RegisterPage() {
   const router = useRouter();
+  const { register: registerAccount, isAuthenticated, isLoading } = useAuth();
   const [serverError, setServerError] = useState<string | null>(null);
   const {
     register,
@@ -31,20 +32,21 @@ export default function RegisterPage() {
 
   async function onSubmit(values: RegisterInput) {
     setServerError(null);
-    const { error } = await signUp.email({
-      name: values.name,
-      email: values.email,
-      password: values.password,
-      // @ts-expect-error custom additional field declared server-side
-      role: values.role,
-    });
-    if (error) {
-      setServerError(error.message ?? "Pendaftaran gagal. Silakan coba kembali.");
+    try {
+      await registerAccount({ name: values.name, email: values.email, password: values.password, role: values.role });
+    } catch (err) {
+      setServerError(err instanceof Error ? err.message : "Pendaftaran gagal. Silakan coba kembali.");
       return;
     }
     router.push("/dashboard");
     router.refresh();
   }
+
+  useEffect(() => {
+    if (!isLoading && isAuthenticated) router.replace("/dashboard");
+  }, [isLoading, isAuthenticated, router]);
+
+  if (!isLoading && isAuthenticated) return null;
 
   return (
     <div className="flex min-h-screen items-center justify-center bg-slate-100 px-4 py-8">
