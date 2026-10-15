@@ -95,17 +95,44 @@ export function RiskSummaryPanel({ districtId }: { districtId: string | null }) 
         {!districtId && (
           <EmptyState title="Belum ada wilayah dipilih" description="Pilih kecamatan pada peta atau dari daftar untuk melihat skor risiko, faktor pendorong, dan rekomendasi mitigasi." />
         )}
-        {districtId && isPending && (
-          <div className="space-y-3" aria-label="Memuat risiko kecamatan">
-            <Skeleton className="h-5 w-2/3" />
-            <Skeleton className="h-8 w-1/3" />
-            <Skeleton className="h-20 w-full" />
-          </div>
-        )}
+        {districtId && isPending && <DistrictDetailSkeleton />}
         {districtId && isError && <ErrorState message={(error as Error).message} onRetry={() => refetch()} />}
         {districtId && data && <DistrictDetail detail={data} />}
       </CardContent>
     </Card>
+  );
+}
+
+export function DistrictDetailSkeleton() {
+  return (
+    <div className="space-y-4" aria-busy="true" aria-label="Memuat rincian kecamatan">
+      <div className="flex items-start justify-between gap-3">
+        <div className="space-y-2">
+          <Skeleton className="h-3 w-24" />
+          <Skeleton className="h-5 w-40" />
+          <Skeleton className="h-3 w-32" />
+        </div>
+        <Skeleton className="h-5 w-20" />
+      </div>
+      <div className="border border-slate-200 bg-slate-50 px-3 py-3">
+        <Skeleton className="h-8 w-28" />
+        <Skeleton className="mt-2 h-1.5 w-full" />
+      </div>
+      <div className="space-y-1.5">
+        <Skeleton className="h-3 w-32" />
+        {Array.from({ length: 3 }).map((_, i) => (
+          <Skeleton key={i} className="h-9 w-full" />
+        ))}
+      </div>
+      <div className="grid grid-cols-2 gap-2">
+        <Skeleton className="h-16 w-full" />
+        <Skeleton className="h-16 w-full" />
+      </div>
+      <div className="border-t border-slate-200 pt-3">
+        <Skeleton className="h-3 w-28" />
+        <Skeleton className="mt-2 h-12 w-full" />
+      </div>
+    </div>
   );
 }
 

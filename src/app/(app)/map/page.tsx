@@ -4,7 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { Topbar } from "@/components/layout/nav";
 import { RiskMap } from "@/components/map/risk-map";
-import { DataProvenanceStrip, DistrictDetail } from "@/components/risk/risk-panels";
+import { DataProvenanceStrip, DistrictDetail, DistrictDetailSkeleton } from "@/components/risk/risk-panels";
 import { HistoricalDisasterPanel } from "@/components/risk/historical-disaster-panel";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { EmptyState, ErrorState } from "@/components/ui/states";
@@ -74,7 +74,7 @@ export default function MapPage() {
                   description="Klik poligon pada peta untuk melihat tingkat risiko, skor, keyakinan, faktor pendorong, dan rekomendasi mitigasi."
                 />
               )}
-              {selectedId && detail.isPending && <p className="text-sm text-slate-500">Memuat rincian kecamatan…</p>}
+              {selectedId && detail.isPending && <DistrictDetailSkeleton />}
               {selectedId && detail.isError && (
                 <ErrorState message={(detail.error as Error).message} onRetry={() => detail.refetch()} />
               )}

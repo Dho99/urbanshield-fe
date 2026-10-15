@@ -15,7 +15,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input, Label } from "@/components/ui/input";
 import { Select } from "@/components/ui/select";
 import { Combobox } from "@/components/ui/combobox";
-import { EmptyState, Skeleton } from "@/components/ui/states";
+import { ControlSkeleton, EmptyState, Skeleton } from "@/components/ui/states";
 import { useDistricts, usePredictRisk, useRiskLayer } from "@/hooks/queries";
 import { predictionSchema, type PredictionInput } from "@/schemas";
 import type { RiskLayer, RiskLevel } from "@/types";
@@ -169,21 +169,22 @@ export default function PredictionPage() {
                   <div className="grid gap-4 sm:grid-cols-2">
                     <div className="space-y-1.5">
                       <Label htmlFor="districtId">Pilih Kecamatan</Label>
-                      <Select
-                        id="districtId"
-                        value={selectedDistrictId}
-                        onChange={onDistrictChange}
-                        disabled={districts.isPending}
-                      >
-                        <option value="" disabled>
-                          {districts.isPending ? "Memuat daftar kecamatan…" : "Pilih salah satu kecamatan"}
-                        </option>
-                        {districts.data?.map((d) => (
-                          <option key={d.districtId} value={d.districtId}>
-                            Kecamatan {d.district} (Skor: {d.score}/100)
-                          </option>
-                        ))}
-                      </Select>
+                      {districts.isPending ? (
+                        <ControlSkeleton />
+                      ) : (
+                        <Select
+                          id="districtId"
+                          value={selectedDistrictId}
+                          onChange={onDistrictChange}
+                        >
+                          <option value="" disabled>Pilih salah satu kecamatan</option>
+                          {districts.data?.map((d) => (
+                            <option key={d.districtId} value={d.districtId}>
+                              Kecamatan {d.district} (Skor: {d.score}/100)
+                            </option>
+                          ))}
+                        </Select>
+                      )}
                       {errors.districtId && (
                         <p role="alert" className="text-xs text-red-700">
                           {errors.districtId.message}

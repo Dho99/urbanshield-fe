@@ -12,7 +12,7 @@ import {
 } from "@/components/risk/risk-panels";
 import { HistoricalDisasterPanel } from "@/components/risk/historical-disaster-panel";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { ErrorState } from "@/components/ui/states";
+import { ControlSkeleton, ErrorState, Skeleton } from "@/components/ui/states";
 import { useDistricts, useRiskLayer } from "@/hooks/queries";
 import { ArrowRight, AlertTriangle, Layers3, Sparkles } from "lucide-react";
 
@@ -82,20 +82,23 @@ export default function DashboardPage() {
               {/* Pemilih Wilayah Ringkas & Bersih */}
               <div className="flex items-center gap-2">
                 <span className="text-xs font-medium text-slate-500">Pilih Wilayah:</span>
-                <select
-                  id="district-quick-select"
-                  value={selectedId ?? ""}
-                  onChange={(e) => setSelectedId(e.target.value)}
-                  disabled={districts.isPending}
-                  className="h-8 border border-slate-300 bg-white px-2.5 py-1 text-xs font-medium text-slate-800 shadow-xs focus:border-slate-900 focus:outline-none"
-                >
-                  <option value="" disabled>Pilih salah satu kecamatan...</option>
-                  {districts.data?.map((d) => (
-                    <option key={d.districtId} value={d.districtId}>
-                      Kecamatan {d.district} — Skor {d.score} ({d.riskLevel === "high" ? "Tinggi" : d.riskLevel === "medium" ? "Sedang" : "Rendah"})
-                    </option>
-                  ))}
-                </select>
+                {districts.isPending ? (
+                  <ControlSkeleton className="h-8 w-64" />
+                ) : (
+                  <select
+                    id="district-quick-select"
+                    value={selectedId ?? ""}
+                    onChange={(e) => setSelectedId(e.target.value)}
+                    className="h-8 border border-slate-300 bg-white px-2.5 py-1 text-xs font-medium text-slate-800 shadow-xs focus:border-slate-900 focus:outline-none"
+                  >
+                    <option value="" disabled>Pilih salah satu kecamatan...</option>
+                    {districts.data?.map((d) => (
+                      <option key={d.districtId} value={d.districtId}>
+                        Kecamatan {d.district} — Skor {d.score} ({d.riskLevel === "high" ? "Tinggi" : d.riskLevel === "medium" ? "Sedang" : "Rendah"})
+                      </option>
+                    ))}
+                  </select>
+                )}
               </div>
             </CardHeader>
 
@@ -105,27 +108,29 @@ export default function DashboardPage() {
                 <Layers3 className="size-3.5 text-slate-400" aria-hidden /> Prioritas Tertinggi:
               </span>
               <div className="flex flex-wrap gap-1.5">
-                {topPriorityDistricts.map((d) => (
-                  <button
-                    key={d.districtId}
-                    type="button"
-                    onClick={() => setSelectedId(d.districtId)}
-                    className={`inline-flex items-center gap-1.5 border px-2.5 py-1 text-xs font-medium transition-colors ${
-                      selectedId === d.districtId
-                        ? "border-slate-900 bg-slate-900 text-white"
-                        : "border-slate-200 bg-white text-slate-700 hover:border-slate-400"
-                    }`}
-                  >
-                    <span>Kec. {d.district}</span>
-                    <span
-                      className={`font-mono text-[10px] ${
-                        selectedId === d.districtId ? "text-slate-200" : "font-semibold text-red-700"
-                      }`}
-                    >
-                      {d.score}
-                    </span>
-                  </button>
-                ))}
+                {districts.isPending
+                  ? Array.from({ length: 4 }).map((_, i) => <Skeleton key={i} className="h-6 w-24" />)
+                  : topPriorityDistricts.map((d) => (
+                      <button
+                        key={d.districtId}
+                        type="button"
+                        onClick={() => setSelectedId(d.districtId)}
+                        className={`inline-flex items-center gap-1.5 border px-2.5 py-1 text-xs font-medium transition-colors ${
+                          selectedId === d.districtId
+                            ? "border-slate-900 bg-slate-900 text-white"
+                            : "border-slate-200 bg-white text-slate-700 hover:border-slate-400"
+                        }`}
+                      >
+                        <span>Kec. {d.district}</span>
+                        <span
+                          className={`font-mono text-[10px] ${
+                            selectedId === d.districtId ? "text-slate-200" : "font-semibold text-red-700"
+                          }`}
+                        >
+                          {d.score}
+                        </span>
+                      </button>
+                    ))}
               </div>
             </div>
 

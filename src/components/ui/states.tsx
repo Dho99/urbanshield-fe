@@ -4,6 +4,11 @@ export function Skeleton({ className }: { className?: string }) {
   return <div aria-hidden className={cn("animate-pulse bg-slate-200", className)} />;
 }
 
+/** Placeholder bar yang meniru tinggi kontrol form (Input/Select). */
+export function ControlSkeleton({ className }: { className?: string }) {
+  return <Skeleton className={cn("h-9 w-full", className)} />;
+}
+
 export function ErrorState({ message, onRetry }: { message: string; onRetry?: () => void }) {
   return (
     <div role="alert" className="border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-800">

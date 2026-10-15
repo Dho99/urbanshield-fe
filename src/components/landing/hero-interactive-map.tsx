@@ -3,6 +3,7 @@
 import { useState, useMemo } from "react";
 import Link from "next/link";
 import { RiskMap } from "@/components/map/risk-map";
+import { Skeleton } from "@/components/ui/states";
 import { useRiskLayer, useDistricts } from "@/hooks/queries";
 import rawHistoricalData from "@/lib/data/historical_events.json";
 import { Droplets, ArrowRight, Layers3, MapPin, Info } from "lucide-react";
@@ -12,7 +13,7 @@ const floodEventsMap = rawHistoricalData as Record<string, { id: number; jenisKe
 export function HeroInteractiveMap() {
   const [selectedId, setSelectedId] = useState<string | null>("gedebage");
   const { data: layer, isPending } = useRiskLayer();
-  const { data: districts } = useDistricts();
+  const { data: districts, isPending: districtsPending } = useDistricts();
 
   const selectedDistrict = useMemo(() => {
     return (districts ?? []).find((d) => d.districtId === selectedId);
@@ -58,7 +59,16 @@ export function HeroInteractiveMap() {
 
       {/* Active Selected District Summary Card */}
       <div className="border-t border-slate-800 bg-slate-900/95 p-3.5">
-        {selectedDistrict ? (
+        {districtsPending ? (
+          <div className="space-y-2.5" aria-busy="true" aria-label="Memuat ringkasan kecamatan">
+            <div className="flex items-center gap-2">
+              <Skeleton className="h-3.5 w-40 bg-slate-700" />
+              <Skeleton className="h-3.5 w-20 bg-slate-700" />
+            </div>
+            <Skeleton className="h-3 w-64 bg-slate-800" />
+            <Skeleton className="h-7 w-32 bg-slate-800" />
+          </div>
+        ) : selectedDistrict ? (
           <div className="flex flex-col gap-2.5 sm:flex-row sm:items-center sm:justify-between">
             <div>
               <div className="flex items-center gap-2">
