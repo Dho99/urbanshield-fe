@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
-import { useRouter } from "next/navigation";
+import { useRouter } from "nextjs-toploader/app";
 import { Sidebar, Topbar } from "@/components/layout/nav";
 import { useAuth } from "@/lib/auth-context";
 

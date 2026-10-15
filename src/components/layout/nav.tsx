@@ -1,7 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
+import { useRouter } from "nextjs-toploader/app";
 import { BarChart3, Map as MapIcon, FlaskConical, ClipboardList, Database, User, LogOut, Waves, ShieldAlert, CheckCircle2 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useAuth } from "@/lib/auth-context";

@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { useRouter } from "nextjs-toploader/app";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -9,7 +9,9 @@ import { Waves } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input, Label } from "@/components/ui/input";
+import { PasswordInput } from "@/components/ui/password-input";
 import { Select } from "@/components/ui/select";
+import { ApiSleepNotice } from "@/components/auth/api-sleep-notice";
 import { registerSchema, type RegisterInput } from "@/schemas";
 import { useAuth } from "@/lib/auth-context";
 import type { ApiError } from "@/lib/api/api-error";
@@ -73,6 +75,7 @@ export default function RegisterPage() {
           <p className="mt-1 text-sm text-slate-500">Daftar akun operasional baru</p>
         </CardHeader>
         <CardContent>
+          <ApiSleepNotice className="mb-4" />
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-4" noValidate>
             <div className="space-y-1.5">
               <Label htmlFor="name">Nama Lengkap</Label>
@@ -96,12 +99,12 @@ export default function RegisterPage() {
             </div>
             <div className="space-y-1.5">
               <Label htmlFor="password">Kata Sandi</Label>
-              <Input id="password" type="password" autoComplete="new-password" {...register("password")} aria-invalid={!!errors.password} />
+              <PasswordInput id="password" autoComplete="new-password" {...register("password")} aria-invalid={!!errors.password} />
               {errors.password && <p role="alert" className="text-xs text-red-700">{errors.password.message}</p>}
             </div>
             <div className="space-y-1.5">
               <Label htmlFor="confirmPassword">Konfirmasi Kata Sandi</Label>
-              <Input id="confirmPassword" type="password" autoComplete="new-password" {...register("confirmPassword")} aria-invalid={!!errors.confirmPassword} />
+              <PasswordInput id="confirmPassword" autoComplete="new-password" {...register("confirmPassword")} aria-invalid={!!errors.confirmPassword} />
               {errors.confirmPassword && <p role="alert" className="text-xs text-red-700">{errors.confirmPassword.message}</p>}
             </div>
             {serverError && <p role="alert" className="border border-red-200 bg-red-50 px-3 py-2 text-sm text-red-800">{serverError}</p>}
